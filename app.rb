@@ -10,23 +10,23 @@ class OptIn < ActiveRecord::Base
   validates_inclusion_of :permission_type, in: %w(one-time permanent)
 end
 
+before do
+  content_type :json
+end
 
+# INDEX
 get '/' do
-  redirect to('/optins')
+  redirect to('/opt-ins')
 end
 
 # LIST
-get '/optins' do
-  content_type :json
-
-  opt_ins = OptIn.order('created_at desc').all
+get '/opt-ins' do
+  opt_ins = OptIn.order('created_at desc')
   opt_ins.to_json
 end
 
 # CREATE
-post '/optins' do
-  content_type :json
-
+post '/opt-ins' do
   opt_in = OptIn.new(params)
 
   if opt_in.save
@@ -37,17 +37,13 @@ post '/optins' do
 end
 
 # GET
-get '/optins/:id' do
-  content_type :json
-
+get '/opt-ins/:id' do
   opt_in = OptIn.find(params[:id])
   opt_in.to_json
 end
 
 # UPDATE
-put '/optins/:id' do
-  content_type :json
-
+put '/opt-ins/:id' do
   opt_in = OptIn.find(params[:id])
 
   if opt_in.update_attributes(params)
