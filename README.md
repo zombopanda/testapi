@@ -1,5 +1,5 @@
-Test api app
+## Test api app
 
-Install:
-    bundle install
-    rake db:migrate
+## Install:
+    $ bundle install
+    $ rake db:migrate
