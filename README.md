@@ -1,5 +1,5 @@
 Test api app
 
 Install:
-bundle install
-rake db:setup
+    bundle install
+    rake db:migrate
